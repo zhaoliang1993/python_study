@@ -55,3 +55,33 @@ while True:
         if w[0] == ' ' or w[0] == '-':
                 w = w[1:]
                 f2.write(w)
+f1.close()
+f2.close()
+
+f1 = open(r'./temp/123.txt','r')
+part = 0
+
+w = f1.readline()
+
+while True:
+        #w = f1.readline()
+        if not w:
+                break
+        if '@@' in w:
+                part = part + 1
+                while True:
+                        w = f1.readline()
+                        if '@@' in w or not w:
+                                break;
+                        name = 'outfile' + str(part) + '.txt'
+                        de = os.path.exists(name)
+                        if not de:
+                                f2 = open(name, 'w+')
+                        if w[0] == '+':
+                                continue
+                        if w[0] == '-' or w[0] == ' ':
+                                w = w[1:]
+
+
+                        f2.write(w)
+                f2.close()
